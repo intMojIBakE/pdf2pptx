@@ -1,11 +1,13 @@
 #!/bin/bash
 # Alireza Shafaei - shafaei@cs.ubc.ca - Jan 2016
+# Zhu Zheyong - cooper@icooper.cc - Oct 2022
 
-resolution=1024
+resolution=1920x1080
 density=300
 #colorspace="-depth 8"
 colorspace="-colorspace sRGB -background white -alpha remove"
 makeWide=true
+sharpen="-sharpen 1.5"
 
 if [ $# -eq 0 ]; then
     echo "No arguments supplied!"
@@ -30,7 +32,7 @@ if [ -d "$tempname" ]; then
 fi
 
 mkdir "$tempname"
-convert -density $density $colorspace -resize "x${resolution}" "$1" "$tempname"/slide.png
+convert -density $density $colorspace $sharpen -resize "x${resolution}" "$1" "$tempname"/slide.png
 
 if [ $? -eq 0 ]; then
 	echo "Extraction succ!"
